@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nozama Store 🛍</title>
+    <link rel="manifest" href="./assets/manifest.webmanifest" />
+    <style>
+      :root {
+        --app-bg-color: royalblue;
+      }
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+        background-color: #fefefe;
+        font-family: sans-serif;
+      }
+      h1 {
+        margin: 0;
+        padding: 0;
+      }
+      #app > header a {
+        text-decoration: none;
+        color: inherit;
+      }
+      #app > header {
+        display: flex;
+        position: sticky;
+        top: 0;
+        background-color: var(--app-bg-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        height: 56px;
+        padding: 0 0.25rem;
+        color: #ffffff;
+        z-index: 10;
+      }
+      .spacer {
+        width: 2rem;
+      }
+      .cart-link {
+        position: relative;
+        display: block;
+        text-decoration: none;
+        width: 2rem;
+      }
+      .badge {
+        position: absolute;
+        background: linear-gradient(45deg, #ff49cd, #e4d530);
+        border-radius: 50%;
+        width: 1rem;
+        height: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0.25rem;
+        bottom: -0.25rem;
+        left: -0.75rem;
+        font-size: 0.75rem;
+      }
+      #app > main {
+        padding: 0 1rem;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+      }
+
+      /* App shell */
+      /* Skeleton */
+      [hidden] {
+        display: none !important;
+      }
+      /* Skeleton */
+      .skeleton {
+        position: relative;
+        overflow: hidden;
+      }
+      .skeleton .hero {
+        min-height: 30vh;
+        background: var(--app-grey-color, #cccccc);
+        margin-bottom: 1rem;
+        border-radius: 5px;
+      }
+      .skeleton .title {
+        min-height: 20px;
+        background: var(--app-grey-color, #cccccc);
+        margin-bottom: 1rem;
+      }
+      .skeleton .text {
+        min-height: 20px;
+        max-width: 60%;
+        background: var(--app-grey-color, #cccccc);
+        margin-bottom: 1rem;
+      }
+
+      .skeleton::after {
+        display: block;
+        content: "";
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        transform: translateX(-100%);
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        animation: loading 1.5s infinite;
+      }
+      @keyframes loading {
+        100% {
+          transform: translateX(100%);
+        }
+      }
+
+      /* Dialog */
+      dialog {
+        border: none;
+        background: white;
+        width: 100%;
+        border-radius: 1rem 1rem 0 0;
+        padding: 0.75rem;
+        box-sizing: border-box;
+        box-shadow: -1px -4px 11px #00000096;
+        position: fixed;
+        bottom: 0;
+        z-index: 15;
+        height: 30vh;
+      }
+
+      /* View display */
+      [page] {
+        display: none;
+      }
+      [page][active] {
+        display: block;
+      }
+    </style>
+    <script src="./src/main.js" type="module"></script>
+
+    <link
+      href="./src/components/product.css"
+      rel="preload"
+      as="style"
+      onload="this.rel='stylesheet'"
+    />
+    <noscript
+      ><link rel="stylesheet" href="./src/components/product.css"
+    /></noscript>
+
+    <link
+      href="./assets/css/product.css"
+      rel="preload"
+      as="style"
+      onload="this.rel='stylesheet'"
+    />
+    <noscript
+      ><link rel="stylesheet" href="./assets/css/product.css"
+    /></noscript>
+
+    <link
+      href="./src/assets/css/cart.css"
+      rel="preload"
+      as="style"
+      onload="this.rel='stylesheet'"
+    />
+    <noscript
+      ><link rel="stylesheet" href="./src/assets/css/cart.css"
+    /></noscript>
+    <script>
+      console.log("serviceWorker" in navigator);
+      // if ("serviceWorker" in navigator) {
+      //   navigator.serviceWorker.register("/service-worker.js", {
+      //     scope: "/",
+      //   });
+      // }
+    </script>
+  </head>
+  <body>
+    <section id="app">
+      <header>
+        <div class="spacer"></div>
+        <h1><a href="/">Nozama shop 🛍</a></h1>
+        <a class="cart-link" href="/cart">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+            />
+          </svg>
+          <span class="badge"></span>
+        </a>
+      </header>
+      <main>
+        <app-home page></app-home>
+        <app-product page></app-product>
+        <app-cart page></app-cart>
+        <app-login page></app-login>
+
+        <dialog>
+          <p>
+            We think that you would like to install out awesome application 😎
+          </p>
+          <button>OK</button>
+        </dialog>
+
+        <div class="skeleton">
+          <div class="hero"></div>
+          <div class="title"></div>
+          <div class="text"></div>
+        </div>
+      </main>
+    </section>
+  </body>
+</html>

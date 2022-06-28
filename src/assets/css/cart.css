@@ -1,0 +1,78 @@
+app-cart .empty-state {
+  display: block;
+  width: 50%;
+  margin: auto;
+}
+
+app-cart .cart-item img {
+  display: block;
+  width: 20%;
+  aspect-ratio: 1/1;
+  object-fit: contain;
+}
+app-cart .cart-item {
+  margin-top: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+app-cart .cart-item h2 {
+  font-size: 1rem;
+}
+
+app-cart .cart-item .detail {
+  flex: 1;
+}
+
+app-cart .cart-item .price {
+  margin-top: 0.125rem;
+  white-space: nowrap;
+  color: #8d8c8c;
+}
+
+app-cart .trash {
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: transparent;
+  border: none;
+  color: #ff3a3a;
+}
+
+app-cart .quantity {
+  margin-top: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+app-cart button.qty-btn.disabled {
+  color: #e38989;
+  pointer-events: none;
+}
+
+app-cart button.qty-btn {
+  background: transparent;
+  border: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  color: lightslategrey;
+  cursor: pointer;
+}
+
+app-cart .order-info {
+  margin-top: 2rem;
+}
+
+app-cart .total {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+app-cart .total-price {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
